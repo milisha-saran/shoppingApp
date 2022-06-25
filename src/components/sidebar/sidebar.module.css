@@ -1,0 +1,19 @@
+.sidebar{
+    width: 220px;
+    padding: 10px 20px;
+    -webkit-box-shadow: 3px 0px 5px 0px var(--shadow-color);
+    -moz-box-shadow: 3px 0px 5px 0px var(--shadow-color);
+    box-shadow: 3px 0px 5px 0px var(--shadow-color);
+
+   
+}
+
+.sorting{
+    display:flex;
+    flex-direction: column;
+}
+
+.filtering{
+    display:flex;
+    flex-direction: column;
+}

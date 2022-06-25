@@ -9,7 +9,7 @@ const Card = ({ product }) => {
     <div className={styles.card}>
       <div>
         <div className={styles.wishbutton}>
-          <i class="fa fa-heart fa-xl" style={{ color: "red" }}></i>
+          <i className="fa fa-heart fa-xl" style={{ color: "red" }}></i>
         </div>
         <img className={styles.productimage} src={img} alt="banana" />
 
