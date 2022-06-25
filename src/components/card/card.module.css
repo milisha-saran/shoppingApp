@@ -1,7 +1,7 @@
 .card{
     display:flex;
     flex-direction: column;
-    height: 470px;
+    height: 550px;
     padding: 20px; 
     border: solid 1px rgb(199, 206, 212);
     margin: 10px;
@@ -12,16 +12,12 @@
 .productimage{
     align-self: center;
     width: 100%;
-    min-height :300px;
-    object-fit: cover;
+    height :300px;
+    object-fit: contain;
     
 }
 
-.productinfo{
-    display : inline-block;
-    line-height: 3px;
-    
-}
+
 
 .producttitle{
     font-size: 20px;

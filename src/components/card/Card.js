@@ -1,21 +1,20 @@
 import React from "react";
+import { textConverter } from "../../helper/textConverter";
 import styles from "./card.module.css";
 
-const Card = () => {
+const Card = ({ product }) => {
+  const { delivery, img, name, price, stock } = product;
+
   return (
     <div className={styles.card}>
       <div>
-        <img
-          className={styles.productimage}
-          src="https://images.unsplash.com/photo-1481349518771-20055b2a7b24?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cmFuZG9tfGVufDB8fDB8fA%3D%3D&w=1000&q=80"
-          alt="banana"
-        />
+        <img className={styles.productimage} src={img} alt="banana" />
 
-        <div className={styles.productinfo}>
-          <p className={styles.producttitle}>Banana v69</p>
-          <p>Rs. 420</p>
-          <p>Out of stock</p>
-          <p style={{ fontSize: 15 }}>Fast Delivery</p>
+        <div>
+          <p className={styles.producttitle}>{textConverter(name)}</p>
+          <p>{price}</p>
+          <p>{stock}</p>
+          <p style={{ fontSize: 15 }}>{delivery}</p>
         </div>
       </div>
       <button className={styles.addbutton}>Add to Cart</button>
