@@ -2,30 +2,32 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Card from "../../components/card/Card";
 import Sidebar from "../../components/sidebar/Sidebar";
+import { useProduct } from "../../context/ProductProvider";
 import { API } from "../../server";
 import styles from "./product.module.css";
 
 const Products = () => {
-  const [products, setProducts] = useState([]);
+  const { state, dispatch } = useProduct();
 
   useEffect(() => {
     (async () => {
       try {
         const res = await API("/product");
-        setProducts(res.data);
+        dispatch({ type: "SET_PRODUCTS", payload: res.data });
       } catch (err) {
         console.log(err);
       }
     })();
   }, []);
 
-  console.log(products);
+  // console.log(products);
+  console.log(state);
 
   return (
     <div className={styles.container}>
       <Sidebar />
       <div className={styles.cards}>
-        {products.map((product) => {
+        {state.products.map((product) => {
           return <Card key={product._id} product={product} />;
         })}
       </div>
