@@ -1,7 +1,12 @@
 import React from "react";
+import Card from "../../components/card/Card";
 
 const Wishlist = () => {
-  return <div>Wishlist</div>;
+  return (
+    <div>
+      <Card />
+    </div>
+  );
 };
 
 export default Wishlist;

@@ -4,6 +4,7 @@
     -webkit-box-shadow: 3px 0px 5px 0px var(--shadow-color);
     -moz-box-shadow: 3px 0px 5px 0px var(--shadow-color);
     box-shadow: 3px 0px 5px 0px var(--shadow-color);
+    
 
    
 }
@@ -11,9 +12,19 @@
 .sorting{
     display:flex;
     flex-direction: column;
+    margin-bottom: 30px;
 }
 
 .filtering{
     display:flex;
     flex-direction: column;
+    margin-bottom: 30px;
+}
+
+.brands{
+    display:flex;
+    flex-direction: column;
+    
+
+
 }
