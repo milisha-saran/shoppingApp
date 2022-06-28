@@ -1,10 +1,12 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useProduct } from "../../context/ProductProvider";
 import { textConverter } from "../../helper/textConverter";
 import styles from "./card.module.css";
 
 const Card = ({ product }) => {
   const { state, dispatch } = useProduct();
+  const navigate = useNavigate();
 
   const { delivery, img, name, price, stock, _id } = product;
 
@@ -14,6 +16,14 @@ const Card = ({ product }) => {
       payload: state.wishlist.includes(id)
         ? state.wishlist.filter((ele) => ele !== id)
         : [...state.wishlist, id],
+    });
+  };
+  const addToCart = (id) => {
+    dispatch({
+      type: "ADD_TO_CART",
+      payload: state.cart.includes(id)
+        ? state.cart.filter((ele) => ele !== id)
+        : [...state.cart, id],
     });
   };
 
@@ -36,7 +46,15 @@ const Card = ({ product }) => {
           <p style={{ fontSize: 15 }}>{delivery}</p>
         </div>
       </div>
-      <button className={styles.addbutton}>Add to Cart</button>
+      {state.cart.includes(_id) ? (
+        <button className={styles.addbutton} onClick={() => navigate("/cart")}>
+          Go to Cart
+        </button>
+      ) : (
+        <button className={styles.addbutton} onClick={() => addToCart(_id)}>
+          Add to Cart
+        </button>
+      )}
     </div>
   );
 };

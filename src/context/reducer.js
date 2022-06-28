@@ -26,6 +26,8 @@ export const reducerFunc = (state, action) => {
       return { ...state, brands: action.payload };
     case "ADD_TO_WISHLIST":
       return { ...state, wishlist: action.payload };
+    case "ADD_TO_CART":
+      return { ...state, cart: action.payload };
     case "CLEAR_ALL":
       return {
         ...state,
