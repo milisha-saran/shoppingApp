@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
+import { brands } from "../../constants/brands";
 import { useProduct } from "../../context/ProductProvider";
+import { brandFilter } from "../../helper/brandFilter";
 import {
   excludeOutOfStock,
   excludeOutOfStockAndFastDelivery,
@@ -18,7 +20,7 @@ const Sidebar = () => {
         type: "SORT_BY",
         payload: {
           sortBy: { lowtohigh: false, hightolow: true },
-          modifiedProducts: sortHighToLow([...state.products]),
+          modifiedProducts: sortHighToLow([...state.modifiedProducts]),
         },
       });
     }
@@ -27,7 +29,7 @@ const Sidebar = () => {
         type: "SORT_BY",
         payload: {
           sortBy: { lowtohigh: true, hightolow: false },
-          modifiedProducts: sortLowToHigh([...state.products]),
+          modifiedProducts: sortLowToHigh([...state.modifiedProducts]),
         },
       });
     }
@@ -40,6 +42,16 @@ const Sidebar = () => {
       payload: state.filterBy.includes(value)
         ? state.filterBy.filter((ele) => ele !== value)
         : [...state.filterBy, value],
+    });
+  };
+
+  const filterBrands = (e) => {
+    const value = e.target.value;
+    dispatch({
+      type: "FILTER_BRANDS",
+      payload: state.brands.includes(value)
+        ? state.brands.filter((ele) => ele !== value)
+        : [...state.brands, value],
     });
   };
 
@@ -76,6 +88,14 @@ const Sidebar = () => {
         });
     }
   }, [state.filterBy]);
+
+  useEffect(() => {
+    if (state.brands.length !== 0)
+      dispatch({
+        type: "SET_PRODUCTS",
+        payload: brandFilter([...state.products], state.brands),
+      });
+  }, [state.brands]);
 
   return (
     <div className={styles.sidebar}>
@@ -123,11 +143,16 @@ const Sidebar = () => {
       </div>
       <div className={styles.brands}>
         Brands
-        {state.allCategory.map((category, index) => {
+        {brands.map((brand) => {
           return (
-            <div className={styles.brand} key={index}>
-              <input type="checkbox" />
-              <label>{category}</label>
+            <div className={styles.brand} key={brand.id}>
+              <input
+                type="checkbox"
+                value={brand.name}
+                checked={state.brands.includes(brand.name)}
+                onChange={filterBrands}
+              />
+              <label>{brand.name}</label>
             </div>
           );
         })}
