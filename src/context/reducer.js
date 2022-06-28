@@ -6,6 +6,7 @@ export const initialValue = {
   allCategory: [],
   selectedCategory: [],
   sortBy: { lowtohigh: false, hightolow: false },
+  filterBy: [],
 };
 
 export const reducerFunc = (state, action) => {
@@ -14,15 +15,18 @@ export const reducerFunc = (state, action) => {
       return { ...state, products: action.payload };
     case "FETCH_CATEGORY":
       return { ...state, allCategory: action.payload };
-    case "SORT_BY":
-      return { ...state, ...action.payload };
     case "SET_PRODUCTS":
       return { ...state, modifiedProducts: action.payload };
+    case "SORT_BY":
+      return { ...state, ...action.payload };
+    case "FILTER_BY":
+      return { ...state, filterBy: action.payload };
     case "CLEAR_ALL":
       return {
         ...state,
         modifiedProducts: state.products,
         sortBy: { lowtohigh: false, hightolow: false },
+        filterBy: { outofstock: false, fastdelivery: false },
       };
 
     default:

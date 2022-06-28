@@ -1,5 +1,10 @@
 import React, { useEffect } from "react";
 import { useProduct } from "../../context/ProductProvider";
+import {
+  excludeOutOfStock,
+  excludeOutOfStockAndFastDelivery,
+  fastDelivery,
+} from "../../helper/filter";
 import { sortHighToLow, sortLowToHigh } from "../../helper/sort";
 import styles from "./sidebar.module.css";
 
@@ -22,10 +27,20 @@ const Sidebar = () => {
         type: "SORT_BY",
         payload: {
           sortBy: { lowtohigh: true, hightolow: false },
-          modifiedProducts: sortLowToHigh([[...state.products]]),
+          modifiedProducts: sortLowToHigh([...state.products]),
         },
       });
     }
+  };
+
+  const filterProducts = (e) => {
+    const value = e.target.value;
+    dispatch({
+      type: "FILTER_BY",
+      payload: state.filterBy.includes(value)
+        ? state.filterBy.filter((ele) => ele !== value)
+        : [...state.filterBy, value],
+    });
   };
 
   const clearFilters = () => {
@@ -33,6 +48,34 @@ const Sidebar = () => {
       type: "CLEAR_ALL",
     });
   };
+
+  useEffect(() => {
+    const isOutOfStock = state.filterBy.includes("OUT_OF_STOCK");
+    const isFastDelivery = state.filterBy.includes("FAST_DELIVERY");
+
+    switch (true) {
+      case isOutOfStock && isFastDelivery:
+        return dispatch({
+          type: "SET_PRODUCTS",
+          payload: excludeOutOfStockAndFastDelivery([...state.products]),
+        });
+      case isOutOfStock && !isFastDelivery:
+        return dispatch({
+          type: "SET_PRODUCTS",
+          payload: excludeOutOfStock([...state.products]),
+        });
+      case !isOutOfStock && isFastDelivery:
+        return dispatch({
+          type: "SET_PRODUCTS",
+          payload: fastDelivery([...state.products]),
+        });
+      case !isOutOfStock && !isFastDelivery:
+        return dispatch({
+          type: "SET_PRODUCTS",
+          payload: state.products,
+        });
+    }
+  }, [state.filterBy]);
 
   return (
     <div className={styles.sidebar}>
@@ -60,11 +103,21 @@ const Sidebar = () => {
       <div className={styles.filtering}>
         Filter
         <span>
-          <input type="checkbox" />
-          <label>Include out of stock</label>
+          <input
+            type="checkbox"
+            value="OUT_OF_STOCK"
+            checked={state.filterBy.includes("OUT_OF_STOCK")}
+            onChange={filterProducts}
+          />
+          <label>Exclude out of stock</label>
         </span>
         <span>
-          <input type="checkbox" />
+          <input
+            type="checkbox"
+            value="FAST_DELIVERY"
+            checked={state.filterBy.includes("FAST_DELIVERY")}
+            onChange={filterProducts}
+          />
           <label>Fast Delivery</label>
         </span>
       </div>

@@ -11,7 +11,7 @@ const Card = ({ product }) => {
         <div className={styles.wishbutton}>
           <i className="fa fa-heart fa-xl" style={{ color: "red" }}></i>
         </div>
-        <img className={styles.productimage} src={img} alt="banana" />
+        <img className={styles.productimage} src={img} alt="product" />
 
         <div>
           <p className={styles.producttitle}>{textConverter(name)}</p>
