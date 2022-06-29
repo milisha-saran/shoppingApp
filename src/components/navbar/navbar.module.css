@@ -12,3 +12,11 @@
     justify-content: space-between;
     width: 150px;
 }
+
+.element{
+    cursor: pointer;
+}
+
+.element:hover{
+    font-weight: 600;
+}

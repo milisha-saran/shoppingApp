@@ -1,14 +1,20 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./navbar.module.css";
 
 const Navbar = () => {
+  const navigate = useNavigate();
   return (
     <div>
       <nav className={styles.navbar}>
         <p>Shopping</p>
         <div className={styles.elements}>
-          <p>Wishlist</p>
-          <p>Cart</p>
+          <p className={styles.element} onClick={() => navigate("/wishlist")}>
+            Wishlist
+          </p>
+          <p className={styles.element} onClick={() => navigate("/cart")}>
+            Cart
+          </p>
         </div>
       </nav>
     </div>

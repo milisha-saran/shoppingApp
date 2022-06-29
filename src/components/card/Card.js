@@ -41,7 +41,7 @@ const Card = ({ product }) => {
 
         <div>
           <p className={styles.producttitle}>{textConverter(name)}</p>
-          <p>{price}</p>
+          <p>₹{price}</p>
           <p>{stock}</p>
           <p style={{ fontSize: 15 }}>{delivery}</p>
         </div>

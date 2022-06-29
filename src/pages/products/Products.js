@@ -1,6 +1,6 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Card from "../../components/card/Card";
+import Layout from "../../components/layout/Layout";
 import Sidebar from "../../components/sidebar/Sidebar";
 import { useProduct } from "../../context/ProductProvider";
 import { createCategory } from "../../helper/category";
@@ -32,14 +32,16 @@ const Products = () => {
   }, []);
 
   return (
-    <div className={styles.container}>
-      <Sidebar />
-      <div className={styles.cards}>
-        {state.modifiedProducts.map((product) => {
-          return <Card key={product._id} product={product} />;
-        })}
+    <Layout>
+      <div className={styles.container}>
+        <Sidebar />
+        <div className={styles.cards}>
+          {state.modifiedProducts.map((product) => {
+            return <Card key={product._id} product={product} />;
+          })}
+        </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 
