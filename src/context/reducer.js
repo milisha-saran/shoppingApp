@@ -24,14 +24,9 @@ export const reducerFunc = (state, action) => {
       return { ...state, filterBy: action.payload };
     case "FILTER_BRANDS":
       return { ...state, brands: action.payload };
-    case "ADD_TO_WISHLIST":
+    case "MODIFY_WISHLIST":
       return { ...state, wishlist: action.payload };
-    case "DELETE_FROM_WISHLIST":
-      return {
-        ...state,
-        wishlist: action.payload,
-      };
-    case "ADD_TO_CART":
+    case "MODIFY_CART":
       return { ...state, cart: action.payload };
     case "CLEAR_ALL":
       return {

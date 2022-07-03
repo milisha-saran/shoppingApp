@@ -7,7 +7,9 @@ const Navbar = () => {
   return (
     <div>
       <nav className={styles.navbar}>
-        <p>Shopping</p>
+        <p className={styles.element} onClick={() => navigate("/")}>
+          Shopping
+        </p>
         <div className={styles.elements}>
           <p className={styles.element} onClick={() => navigate("/wishlist")}>
             Wishlist

@@ -12,14 +12,14 @@ const Wishlist = () => {
 
   const deleteFromWishlist = (_id) => {
     dispatch({
-      type: "DELETE_FROM_WISHLIST",
+      type: "MODIFY_WISHLIST",
       payload: state.wishlist.filter((id) => _id !== id),
     });
   };
 
   const addToCart = (id) => {
     dispatch({
-      type: "ADD_TO_CART",
+      type: "MODIFY_CART",
       payload: state.cart.includes(id)
         ? state.cart.filter((ele) => ele !== id)
         : [...state.cart, id],
@@ -33,7 +33,7 @@ const Wishlist = () => {
           .filter((product) => state.wishlist.includes(product._id))
           .map(({ img, price, _id, name }) => {
             return (
-              <div className={styles.card}>
+              <div className={styles.card} key={_id}>
                 <div>
                   <div className={styles.deletebutton}>
                     <i

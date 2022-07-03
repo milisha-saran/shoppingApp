@@ -12,7 +12,7 @@ const Card = ({ product }) => {
 
   const addToWishlist = (id) => {
     dispatch({
-      type: "ADD_TO_WISHLIST",
+      type: "MODIFY_WISHLIST",
       payload: state.wishlist.includes(id)
         ? state.wishlist.filter((ele) => ele !== id)
         : [...state.wishlist, id],
@@ -20,7 +20,7 @@ const Card = ({ product }) => {
   };
   const addToCart = (id) => {
     dispatch({
-      type: "ADD_TO_CART",
+      type: "MODIFY_CART",
       payload: state.cart.includes(id)
         ? state.cart.filter((ele) => ele !== id)
         : [...state.cart, id],
