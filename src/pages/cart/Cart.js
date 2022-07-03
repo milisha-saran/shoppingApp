@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./cart.module.css";
 import { useProduct } from "../../context/ProductProvider";
 import { textConverter } from "../../helper/textConverter";
@@ -31,6 +31,8 @@ const Cart = () => {
   const decreaseQuantity = () => {
     quantity > 1 ? setQuantity(quantity - 1) : setQuantity(quantity);
   };
+
+  useEffect(() => {}, []);
 
   return (
     <Layout>

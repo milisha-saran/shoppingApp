@@ -22,7 +22,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const res = await API.post("/signin", user);
-      console.log(res);
+
       if (res.status === 200) {
         const { accessToken, refreshToken, userData } = res.data;
         const { cart, wishlist } = userData;

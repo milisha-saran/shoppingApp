@@ -22,7 +22,7 @@ const SignUp = () => {
     e.preventDefault();
     try {
       const res = await API.post("/signup", user);
-      console.log(res);
+
       if (res.status === 200) navigate("/login");
     } catch (error) {
       console.log(error);

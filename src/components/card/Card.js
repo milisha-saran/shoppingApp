@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useProduct } from "../../context/ProductProvider";
 import { textConverter } from "../../helper/textConverter";
+import { API } from "../../server";
 import styles from "./card.module.css";
 
 const Card = ({ product }) => {
@@ -18,13 +19,18 @@ const Card = ({ product }) => {
         : [...state.wishlist, id],
     });
   };
-  const addToCart = (id) => {
-    dispatch({
-      type: "MODIFY_CART",
-      payload: state.cart.includes(id)
-        ? state.cart.filter((ele) => ele !== id)
-        : [...state.cart, id],
-    });
+  const addToCart = async (id) => {
+    try {
+      const res = await API.post(`/cart/create/${id}`);
+      console.log(res);
+
+      dispatch({
+        type: "MODIFY_CART",
+        payload: res.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -52,11 +58,11 @@ const Card = ({ product }) => {
           <p className={styles.productdelivery}>{delivery}</p>
         </div>
       </div>
-      {state.cart.includes(_id) && stock === "In stock" ? (
+      {state.cart.some((ele) => _id === ele.item) && stock === "In stock" ? (
         <button className={styles.addbutton} onClick={() => navigate("/cart")}>
           Go to Cart
         </button>
-      ) : !state.cart.includes(_id) && stock === "In stock" ? (
+      ) : state.cart.some((ele) => _id !== ele.item) && stock === "In stock" ? (
         <button className={styles.addbutton} onClick={() => addToCart(_id)}>
           Add to Cart
         </button>
