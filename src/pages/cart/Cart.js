@@ -37,39 +37,44 @@ const Cart = () => {
       <div className={styles.layout}>
         {state.products
           .filter((product) => state.cart.includes(product._id))
-          .map(({ img, price, _id, name }) => {
+          .map(({ img, price, _id, name, delivery }) => {
             return (
               <div className={styles.card} key={_id}>
-                <div>
+                <div className={styles.product}>
                   <img
                     className={styles.productimage}
                     src={img}
                     alt="product"
                   />
-
                   <div>
-                    <p className={styles.producttitle}>{name}</p>
-                    <p>₹ {price}</p>
+                    <div className={styles.quantity}>
+                      <button onClick={decreaseQuantity}>-</button>
+                      <p> Quantity : {quantity} </p>
+                      <button onClick={increaseQuantity}>+</button>
+                    </div>
                   </div>
                 </div>
-
-                <div className={styles.cartactions}>
-                  <div className={styles.quantity}>
-                    <button onClick={decreaseQuantity}>-</button>
-                    <p>Quantity : {quantity}</p>
-                    <button onClick={increaseQuantity}>+</button>
+                <div className={styles.info}>
+                  <div className={styles.productinfo}>
+                    {" "}
+                    <p className={styles.producttitle}>{name}</p>
+                    <p className={styles.productprice}>₹ {price}</p>
+                    <p className={styles.productdelivery}>{delivery}</p>
                   </div>
-                  <button
-                    className={styles.addbutton}
-                    onClick={() => moveToWishlist(_id)}
-                  >
-                    Move To Wishlist
-                  </button>{" "}
-                  <div className={styles.deletebutton}>
-                    <i
-                      className="fa-solid fa-trash fa-lg"
-                      onClick={() => deleteFromCart(_id)}
-                    ></i>
+                  <div className={styles.cartactions}>
+                    {" "}
+                    <button
+                      className={styles.addbutton}
+                      onClick={() => moveToWishlist(_id)}
+                    >
+                      Move To Wishlist
+                    </button>{" "}
+                    <div className={styles.deletebutton}>
+                      <i
+                        className="fa-solid fa-trash fa-lg"
+                        onClick={() => deleteFromCart(_id)}
+                      ></i>
+                    </div>
                   </div>
                 </div>
               </div>

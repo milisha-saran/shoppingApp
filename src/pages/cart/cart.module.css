@@ -4,7 +4,7 @@
 .card{
     display:flex;
     flex-direction: row;
-    height: 400px;
+    height: 300px;
     max-width: 900px;
     padding: 20px; 
     border: solid 1px rgb(199, 206, 212);
@@ -16,9 +16,22 @@
 .productimage{
     align-self: center;
     width: 100%;
-    height :300px;
+    height: 90%;
     object-fit: contain;
 
+}
+
+.product{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+.productinfo{
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    margin: 10px 0px;
 }
 
 .producttitle{
@@ -26,10 +39,25 @@
     font-weight:bold;
 }
 
+.info{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 .addbutton{
-    width: fit-content;
+    width: 100%;
     height: 35px;
     align-self: center;
+    background-color: rgb(141, 222, 245);
+    border: 0px;
+    border-radius: 4px;
+    color: rgb(38, 34, 34)
+}
+
+.addbutton:hover{
+    transform: scale(1.06);
+    color: black
 }
 .deletebutton{
     display: flex;
@@ -41,11 +69,13 @@
 .cartactions{
     display: flex;
     align-items: center;
-    margin-top: 350px;
-    width: 400px;
-    justify-content: space-between;
+    width: 250px;
+    gap: 10px;
 }
 
 .quantity{
     display: flex;
+    align-items: center;
+    height: 30px;
+    border: 0px;
 }

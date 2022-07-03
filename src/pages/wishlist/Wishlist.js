@@ -48,8 +48,8 @@ const Wishlist = () => {
                   />
 
                   <div>
-                    <p className={styles.producttitle}>{textConverter(name)}</p>
-                    <p>₹ {price}</p>
+                    <p className={styles.producttitle}>{name}</p>
+                    <p className={styles.productprice}>₹ {price}</p>
                   </div>
                 </div>
                 {state.cart.includes(_id) ? (

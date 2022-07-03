@@ -41,17 +41,27 @@ const Card = ({ product }) => {
 
         <div>
           <p className={styles.producttitle}>{textConverter(name)}</p>
-          <p>₹{price}</p>
-          <p>{stock}</p>
-          <p style={{ fontSize: 15 }}>{delivery}</p>
+          <p className={styles.productprice}>₹{price}</p>
+          <p
+            className={styles.productstock}
+            style={{ color: stock === "In stock" ? "inherit" : "grey" }}
+          >
+            {stock}
+          </p>
+
+          <p className={styles.productdelivery}>{delivery}</p>
         </div>
       </div>
-      {state.cart.includes(_id) ? (
+      {state.cart.includes(_id) && stock === "In stock" ? (
         <button className={styles.addbutton} onClick={() => navigate("/cart")}>
           Go to Cart
         </button>
-      ) : (
+      ) : !state.cart.includes(_id) && stock === "In stock" ? (
         <button className={styles.addbutton} onClick={() => addToCart(_id)}>
+          Add to Cart
+        </button>
+      ) : (
+        <button disabled className={styles.disabledbutton}>
           Add to Cart
         </button>
       )}

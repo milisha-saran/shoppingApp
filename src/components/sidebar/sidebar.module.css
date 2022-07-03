@@ -9,22 +9,42 @@
    
 }
 
-.sorting{
-    display:flex;
-    flex-direction: column;
-    margin-bottom: 30px;
+.heading{
+    font-size:23px;
+    font-weight:500;
 }
+
+.subheading{
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 400;
+    gap : 10px
+}
+
 
 .filtering{
     display:flex;
     flex-direction: column;
     margin-bottom: 30px;
+    font-weight: lighter;
 }
 
 .brands{
     display:flex;
     flex-direction: column;
-    
+    margin-bottom: 30px;
+    font-weight: lighter;
+}
 
+.clearfilter{
+    background-color: rgb(235, 61, 61);
+    border:0px;
+    border-radius: 2px;
+    color: white;
+    height: 30px;
+}
 
+.clearfilter:hover{
+    background-color: rgb(233, 30, 30);
 }

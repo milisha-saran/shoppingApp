@@ -99,8 +99,12 @@ const Sidebar = () => {
 
   return (
     <div className={styles.sidebar}>
-      <div className={styles.sorting}>
-        Sort By
+      <p className={styles.heading}>Filters</p>
+      <div className={styles.filtering}>
+        <div className={styles.subheading}>
+          <i className="fa fa-sort"></i>
+          <p>Sort By</p>
+        </div>
         <span>
           <input
             type="radio"
@@ -121,7 +125,10 @@ const Sidebar = () => {
         </span>
       </div>
       <div className={styles.filtering}>
-        Filter
+        <div className={styles.subheading}>
+          <i className="fa-solid fa-filter"></i>
+          <p>Filter</p>
+        </div>
         <span>
           <input
             type="checkbox"
@@ -142,7 +149,11 @@ const Sidebar = () => {
         </span>
       </div>
       <div className={styles.brands}>
-        Brands
+        <div className={styles.subheading}>
+          {" "}
+          <i class="fa-solid fa-bars"></i>
+          <p>Brands</p>
+        </div>
         {brands.map((brand) => {
           return (
             <div className={styles.brand} key={brand.id}>
@@ -157,7 +168,9 @@ const Sidebar = () => {
           );
         })}
       </div>
-      <button onClick={clearFilters}>Clear All</button>
+      <button className={styles.clearfilter} onClick={clearFilters}>
+        Clear All
+      </button>
     </div>
   );
 };
