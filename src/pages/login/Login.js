@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Layout from "../../components/layout/Layout";
 import { useProduct } from "../../context/ProductProvider";
 import { API, setApiHeader } from "../../server";
+import styles from "./login.module.css";
 
 const Login = () => {
   const { dispatch } = useProduct();
@@ -38,28 +40,35 @@ const Login = () => {
     }
   };
   return (
-    <div>
-      <form onSubmit={login}>
-        <label className="label">Email</label>
-        <input
-          onChange={handleData}
-          className=""
-          name="email"
-          value={user.email}
-          type="email"
-        />
+    <Layout>
+      <div className={styles.container}>
+        <form className={styles.loginform} onSubmit={login}>
+          <h3>Log In</h3>
+          <div className={styles.formdata}>
+            <label className={styles.formlabel}>Email : </label>
+            <input
+              className={styles.forminput}
+              onChange={handleData}
+              name="email"
+              value={user.email}
+              type="email"
+            />
+          </div>
 
-        <label className="label">Password</label>
-        <input
-          onChange={handleData}
-          className=""
-          name="password"
-          value={user.password}
-          type="password"
-        />
-        <button className="">Submit</button>
-      </form>
-    </div>
+          <div className={styles.formdata}>
+            <label className={styles.formlabel}>Password : </label>
+            <input
+              onChange={handleData}
+              className={styles.forminput}
+              name="password"
+              value={user.password}
+              type="password"
+            />
+          </div>
+          <button className={styles.submitbutton}>Submit</button>
+        </form>
+      </div>
+    </Layout>
   );
 };
 

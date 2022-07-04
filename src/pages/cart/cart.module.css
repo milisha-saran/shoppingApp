@@ -25,6 +25,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 65%;
     gap: 10px;
 }
 .productinfo{
@@ -39,10 +40,23 @@
     font-weight:bold;
 }
 
+.productprice{
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.productdelivery{
+   margin-top: 50px;
+    font-size: 18px;
+    font-weight: 400;
+    color: goldenrod
+}
+
 .info{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    width: 35%;
 }
 
 .addbutton{
@@ -68,6 +82,7 @@
 
 .cartactions{
     display: flex;
+    margin-left: 50px;
     align-items: center;
     width: 250px;
     gap: 10px;
@@ -78,4 +93,13 @@
     align-items: center;
     height: 30px;
     border: 0px;
+}
+
+.modifybutton{
+    margin: 5px;
+    border: 1px solid black;
+    border-radius: 50%;
+    background-color: white;
+    font-weight: bold;
+    font-size: 18px;
 }

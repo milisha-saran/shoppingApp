@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Layout from "../../components/layout/Layout";
 import { API } from "../../server";
+import styles from "./signup.module.css";
 
 const SignUp = () => {
   const [user, setUser] = useState({
@@ -29,46 +31,58 @@ const SignUp = () => {
     }
   };
   return (
-    <div>
-      <form onSubmit={signup}>
-        <label className="label">Name</label>
-        <input
-          onChange={handleData}
-          className=""
-          name="name"
-          value={user.name}
-          type="text"
-        />
+    <Layout>
+      {" "}
+      <div className={styles.container}>
+        <form className={styles.signupform} onSubmit={signup}>
+          <h3>Sign Up</h3>
+          <div className={styles.formdata}>
+            <label className={styles.formlabel}>Name : </label>
+            <input
+              onChange={handleData}
+              className={styles.forminput}
+              name="name"
+              value={user.name}
+              type="text"
+            />
+          </div>
 
-        <label className="label">Email</label>
-        <input
-          onChange={handleData}
-          className=""
-          name="email"
-          value={user.email}
-          type="email"
-        />
+          <div className={styles.formdata}>
+            {" "}
+            <label className={styles.formlabel}>Email : </label>
+            <input
+              onChange={handleData}
+              className={styles.forminput}
+              name="email"
+              value={user.email}
+              type="email"
+            />
+          </div>
+          <div className={styles.formdata}>
+            <label className={styles.formlabel}>Password : </label>
+            <input
+              onChange={handleData}
+              className={styles.forminput}
+              name="password"
+              value={user.password}
+              type="password"
+            />
+          </div>
+          <div className={styles.formdata}>
+            <label className={styles.formlabel}>Confirm Password : </label>
+            <input
+              className={styles.forminput}
+              onChange={handleData}
+              name="confirmpassword"
+              value={user.confirmpassword}
+              type="password"
+            />
+          </div>
 
-        <label className="label">Password</label>
-        <input
-          onChange={handleData}
-          className=""
-          name="password"
-          value={user.password}
-          type="password"
-        />
-        <label className="label">Confirm Password</label>
-        <input
-          onChange={handleData}
-          className=""
-          name="confirmpassword"
-          value={user.confirmpassword}
-          type="password"
-        />
-
-        <button className="">Submit</button>
-      </form>
-    </div>
+          <button className={styles.submitbutton}>Submit</button>
+        </form>
+      </div>
+    </Layout>
   );
 };
 
