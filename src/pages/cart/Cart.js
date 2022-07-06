@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styles from "./cart.module.css";
 import { useProduct } from "../../context/ProductProvider";
-import { textConverter } from "../../helper/textConverter";
 import Layout from "../../components/layout/Layout";
 import { useNavigate } from "react-router-dom";
 import { priceCalculator } from "../../helper/priceCalculator";

@@ -1,4 +1,5 @@
 export const initialValue = {
+  userid: "",
   products: [],
   modifiedProducts: [],
   wishlist: [],
@@ -12,6 +13,8 @@ export const initialValue = {
 
 export const reducerFunc = (state, action) => {
   switch (action.type) {
+    case "SET_USERID":
+      return { ...state, userid: action.payload };
     case "FETCH_PRODUCTS":
       return { ...state, products: action.payload };
     case "FETCH_CATEGORY":

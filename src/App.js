@@ -37,8 +37,10 @@ function App() {
           const res = await API("/user", {
             headers: { authorization: `Bearer ${accessToken}` },
           });
-          const { cart, wishlist } = res.data;
+          const { cart, wishlist, _id } = res.data;
           console.log(res);
+
+          dispatch({ type: "SET_USERID", payload: _id });
           dispatch({ type: "MODIFY_CART", payload: cart });
           dispatch({ type: "MODIFY_WISHLIST", payload: wishlist });
 
