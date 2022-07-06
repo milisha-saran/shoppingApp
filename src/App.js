@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useProduct } from "./context/ProductProvider";
 
 import Cart from "./pages/cart/Cart";
+import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import Products from "./pages/products/Products";
 import SignUp from "./pages/sign up/SignUp";
@@ -53,6 +54,7 @@ function App() {
     <div>
       <BrowserRouter>
         <Routes>
+          <Route path="home" element={<Home />} />
           <Route path="signup" element={<SignUp />} />
           <Route path="login" element={<Login />} />
           <Route path="/" element={<Products />} />
@@ -65,3 +67,22 @@ function App() {
 }
 
 export default App;
+
+/*
+app.get("/", (req,res)=>{
+  res.send("hello world")
+}) at page load
+
+app.listen(3000, (req,res)=>{
+  console.log("server started")
+})
+
+model = schema for the product
+router = front-end API calls
+router.route("/product").get(getProducts).post(createProducts)
+controller = API calls and modifications
+getProduct=async(req,res)=>{
+  try{} catch(err){console.log(err.message)}
+}
+
+*/

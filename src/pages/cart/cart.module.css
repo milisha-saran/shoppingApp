@@ -1,10 +1,11 @@
 .layout{
+   
   
 }
 .card{
     display:flex;
     flex-direction: row;
-    height: 300px;
+    height: 200px;
     max-width: 900px;
     padding: 20px; 
     border: solid 1px rgb(199, 206, 212);
@@ -13,43 +14,36 @@
     justify-content: space-between;
 }
 
-.productimage{
-    align-self: center;
-    width: 100%;
-    height: 90%;
-    object-fit: contain;
-
-}
-
 .product{
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 65%;
-    gap: 10px;
+    height: 100%;
 }
-.productinfo{
+
+.productimage{
+    align-self: center;
+    width: 100%;
+    height: 85%;
+    object-fit: contain;
+
+}
+
+.quantity{
     display: flex;
-    flex-direction: column;
-    align-items:center;
-    margin: 10px 0px;
+    align-items: center;
+    height: 100%;
+    border: 0px;
 }
 
-.producttitle{
-    font-size: 20px;
-    font-weight:bold;
-}
-
-.productprice{
+.modifybutton{
+    margin: 5px;
+    border: 1px solid black;
+    border-radius: 50%;
+    background-color: white;
+    font-weight: bold;
     font-size: 18px;
-    font-weight: 500;
-}
-
-.productdelivery{
-   margin-top: 50px;
-    font-size: 18px;
-    font-weight: 400;
-    color: goldenrod
 }
 
 .info{
@@ -57,6 +51,36 @@
     flex-direction: column;
     justify-content: space-between;
     width: 35%;
+    height: fit-content;
+}
+
+.productinfo{
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+  
+}
+
+.producttitle{
+    font-size: 18px;
+    font-weight:bold;
+}
+
+.productprice{
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.productdelivery{
+    font-size: 16px;
+    font-weight: 400;
+    color: goldenrod
+}
+
+.cartactions{
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .addbutton{
@@ -79,27 +103,14 @@
     padding: 3px;
     margin-bottom: 10px;
 }
-
-.cartactions{
-    display: flex;
-    margin-left: 50px;
-    align-items: center;
-    width: 250px;
-    gap: 10px;
+.paymentcard{
+    display:flex;
+    flex-direction: column;
+    padding: 20px; 
+    border: solid 1px rgb(199, 206, 212);
+    margin: 10px;
+    border-radius: 3px;
+    justify-content: space-between;
 }
 
-.quantity{
-    display: flex;
-    align-items: center;
-    height: 30px;
-    border: 0px;
-}
 
-.modifybutton{
-    margin: 5px;
-    border: 1px solid black;
-    border-radius: 50%;
-    background-color: white;
-    font-weight: bold;
-    font-size: 18px;
-}

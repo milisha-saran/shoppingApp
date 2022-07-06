@@ -10,13 +10,17 @@
 .elements{
     display: flex;
     justify-content: space-between;
-    width: 150px;
+    width: 200px;
 }
 
 .element{
     cursor: pointer;
+    align-self: center;
+    font-size:larger;
+    font-weight: 600;
+    
 }
 
 .element:hover{
-    font-weight: 600;
+    font-weight: 700;
 }

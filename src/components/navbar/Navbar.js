@@ -1,22 +1,45 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useProduct } from "../../context/ProductProvider";
 import styles from "./navbar.module.css";
 
 const Navbar = () => {
+  const { state } = useProduct();
   const navigate = useNavigate();
   return (
     <div>
       <nav className={styles.navbar}>
         <p className={styles.element} onClick={() => navigate("/")}>
-          Shopping
+          8Gadget
         </p>
         <div className={styles.elements}>
-          <p className={styles.element} onClick={() => navigate("/wishlist")}>
-            Wishlist
-          </p>
-          <p className={styles.element} onClick={() => navigate("/cart")}>
-            Cart
-          </p>
+          <div className={styles.element}>
+            {state.wishlist.length !== 0 ? (
+              <i
+                className="fa-solid fa-heart fa-lg"
+                onClick={() => navigate("/wishlist")}
+              ></i>
+            ) : (
+              <i
+                className="fa-regular fa-heart fa-lg"
+                onClick={() => navigate("/wishlist")}
+              ></i>
+            )}
+          </div>
+          <div className={styles.element}>
+            {state.cart.length !== 0 ? (
+              <i
+                className="fa-solid fa-dolly"
+                onClick={() => navigate("/cart")}
+              ></i>
+            ) : (
+              <i
+                className="fa-solid fa-boxes-packing"
+                onClick={() => navigate("/cart")}
+              ></i>
+            )}
+          </div>
+          <div className={styles.element}>Log Out</div>
         </div>
       </nav>
     </div>

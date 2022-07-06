@@ -4,10 +4,15 @@ import { useProduct } from "../../context/ProductProvider";
 import { textConverter } from "../../helper/textConverter";
 import Layout from "../../components/layout/Layout";
 import { useNavigate } from "react-router-dom";
+import { priceCalculator } from "../../helper/priceCalculator";
 
 const Cart = () => {
   const { state, dispatch } = useProduct();
   const [quantity, setQuantity] = useState(1);
+
+  const cartList = state.products.filter((product) =>
+    state.cart.includes(product._id)
+  );
 
   const deleteFromCart = (_id) => {
     dispatch({
@@ -35,9 +40,8 @@ const Cart = () => {
   return (
     <Layout>
       <div className={styles.layout}>
-        {state.products
-          .filter((product) => state.cart.includes(product._id))
-          .map(({ img, price, _id, name, delivery }) => {
+        <div>
+          {cartList.map(({ img, price, _id, name, delivery }) => {
             return (
               <div className={styles.card} key={_id}>
                 <div className={styles.product}>
@@ -90,6 +94,15 @@ const Cart = () => {
               </div>
             );
           })}
+        </div>
+        <div className={styles.paymentcard}>
+          <p>Price Details</p>
+          <p>Total price : {}</p>
+          <p>Discount : {}</p>
+          <p>Delivery Charges : {}</p>
+          <p>Total Amount : {priceCalculator(cartList)}</p>
+          <button>Pay Now</button>
+        </div>
       </div>
     </Layout>
   );

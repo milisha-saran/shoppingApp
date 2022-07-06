@@ -40,35 +40,33 @@ const Login = () => {
     }
   };
   return (
-    <Layout>
-      <div className={styles.container}>
-        <form className={styles.loginform} onSubmit={login}>
-          <h3>Log In</h3>
-          <div className={styles.formdata}>
-            <label className={styles.formlabel}>Email : </label>
-            <input
-              className={styles.forminput}
-              onChange={handleData}
-              name="email"
-              value={user.email}
-              type="email"
-            />
-          </div>
+    <div className={styles.container}>
+      <form className={styles.loginform} onSubmit={login}>
+        <h3>Log In</h3>
+        <div className={styles.formdata}>
+          <label className={styles.formlabel}>Email : </label>
+          <input
+            className={styles.forminput}
+            onChange={handleData}
+            name="email"
+            value={user.email}
+            type="email"
+          />
+        </div>
 
-          <div className={styles.formdata}>
-            <label className={styles.formlabel}>Password : </label>
-            <input
-              onChange={handleData}
-              className={styles.forminput}
-              name="password"
-              value={user.password}
-              type="password"
-            />
-          </div>
-          <button className={styles.submitbutton}>Submit</button>
-        </form>
-      </div>
-    </Layout>
+        <div className={styles.formdata}>
+          <label className={styles.formlabel}>Password : </label>
+          <input
+            onChange={handleData}
+            className={styles.forminput}
+            name="password"
+            value={user.password}
+            type="password"
+          />
+        </div>
+        <button className={styles.submitbutton}>Submit</button>
+      </form>
+    </div>
   );
 };
 

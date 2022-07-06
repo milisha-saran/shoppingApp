@@ -24,6 +24,7 @@ const Wishlist = () => {
         ? state.cart.filter((ele) => ele !== id)
         : [...state.cart, id],
     });
+    deleteFromWishlist(id);
   };
 
   return (
