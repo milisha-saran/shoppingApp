@@ -6,6 +6,12 @@ import styles from "./navbar.module.css";
 const Navbar = () => {
   const { state } = useProduct();
   const navigate = useNavigate();
+
+  const logout = () => {
+    window.localStorage.removeItem("rtoken");
+    navigate("/login");
+  };
+
   return (
     <div>
       <nav className={styles.navbar}>
@@ -39,7 +45,9 @@ const Navbar = () => {
               ></i>
             )}
           </div>
-          <div className={styles.element}>Log Out</div>
+          <div className={styles.element} onClick={logout}>
+            Log Out
+          </div>
         </div>
       </nav>
     </div>

@@ -8,14 +8,15 @@ import Layout from "../../components/layout/Layout";
 import { API } from "../../server";
 
 const Wishlist = () => {
-  const [isLoading, setLoading] = useState(false);
+  const [isLoadingWishlist, setLoadingWishlist] = useState(false);
+  const [isLoadingCart, setLoadingCart] = useState(false);
   const [products, setProduct] = useState([]);
   const { state, dispatch } = useProduct();
   const navigate = useNavigate();
 
   const deleteFromWishlist = async (_id) => {
     try {
-      setLoading(true);
+      setLoadingWishlist(true);
       const res = await API.post(`/wishlist/delete/${_id}`);
       const newProducts = products.filter((product) =>
         res.data.includes(product._id)
@@ -23,28 +24,28 @@ const Wishlist = () => {
       setProduct(newProducts);
       dispatch({
         type: "MODIFY_WISHLIST",
-        payload: res.data,
+        payload: Array.from(new Set(res.data)),
       });
     } catch (error) {
       console.log(error);
     } finally {
-      setLoading(false);
+      setLoadingWishlist(false);
     }
   };
 
   const addToCart = async (_id) => {
     try {
-      setLoading(true);
+      setLoadingCart(true);
       const res = await API.post(`/cart/create/${_id}`);
       const cartItems = res.data.map(({ item }) => item);
       dispatch({
         type: "MODIFY_CART",
-        payload: cartItems,
+        payload: Array.from(new Set(cartItems)),
       });
     } catch (error) {
       console.log(error);
     } finally {
-      setLoading(false);
+      setLoadingCart(false);
     }
   };
 
@@ -81,14 +82,14 @@ const Wishlist = () => {
                   <p className={styles.productprice}>₹ {price}</p>
                 </div>
               </div>
-              {!isLoading && state.cart.includes(_id) ? (
+              {!isLoadingCart && state.cart.includes(_id) ? (
                 <button
                   className={styles.addbutton}
                   onClick={() => navigate("/cart")}
                 >
                   Go to Cart
                 </button>
-              ) : !isLoading && !state.cart.includes(_id) ? (
+              ) : !isLoadingCart && !state.cart.includes(_id) ? (
                 <button
                   className={styles.addbutton}
                   onClick={() => addToCart(_id)}
@@ -96,7 +97,7 @@ const Wishlist = () => {
                   Add to Cart
                 </button>
               ) : null}
-              {isLoading && (
+              {isLoadingCart && (
                 <button className={styles.addbutton}>Adding...</button>
               )}
             </div>
