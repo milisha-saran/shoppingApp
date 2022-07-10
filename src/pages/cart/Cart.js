@@ -43,12 +43,14 @@ const Cart = () => {
           })}
         </div>
         <div className={styles.paymentcard}>
-          <p>Price Details</p>
-          <p>Total price : {amount}</p>
-          <p>Discount : {discount} </p>
-          <p>Delivery Charges : {delivery} </p>
-          <p>Total Amount : {total}</p>
-          <button>Pay Now</button>
+          <p className={styles.paymenttitle}>Price Details</p>
+          <p className={styles.paymentdetails}>Total price : ₹ {amount}</p>
+          <p className={styles.paymentdetails}>Discount : - ₹ {discount} </p>
+          <p className={styles.paymentdetails}>
+            Delivery Charges : ₹ {delivery}
+          </p>
+          <p className={styles.paymentfinal}>Total Amount : ₹ {total}</p>
+          <button className={styles.paymentbutton}>Pay Now</button>
         </div>
       </div>
     </Layout>
