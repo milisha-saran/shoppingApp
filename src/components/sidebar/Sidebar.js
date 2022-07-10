@@ -151,7 +151,7 @@ const Sidebar = () => {
       <div className={styles.brands}>
         <div className={styles.subheading}>
           {" "}
-          <i class="fa-solid fa-bars"></i>
+          <i className="fa-solid fa-bars"></i>
           <p>Brands</p>
         </div>
         {brands.map((brand) => {

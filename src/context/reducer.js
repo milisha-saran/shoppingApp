@@ -39,6 +39,8 @@ export const reducerFunc = (state, action) => {
         filterBy: [],
         brands: [],
       };
+    case "REVERT":
+      return state;
 
     default:
       return state;

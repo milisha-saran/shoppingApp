@@ -14,7 +14,6 @@ const Products = () => {
     (async () => {
       try {
         const res = await API("/product");
-        console.log(res);
 
         if (res.status === 200) {
           dispatch({ type: "FETCH_PRODUCTS", payload: res.data });

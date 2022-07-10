@@ -4,11 +4,13 @@ import { useProduct } from "../../context/ProductProvider";
 import styles from "./navbar.module.css";
 
 const Navbar = () => {
-  const { state } = useProduct();
+  const { state, dispatch } = useProduct();
   const navigate = useNavigate();
 
   const logout = () => {
     window.localStorage.removeItem("rtoken");
+    dispatch({ type: "REVERT" });
+
     navigate("/login");
   };
 

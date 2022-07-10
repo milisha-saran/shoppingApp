@@ -17,7 +17,11 @@ const Card = ({ product }) => {
     try {
       setLoadingCart(true);
       const res = await API.post(`/cart/create/${_id}`);
-      const cartItems = res.data.map(({ item }) => item);
+
+      const cartItems = res.data.map(({ item, quantity }) => ({
+        item: item,
+        quantity: quantity,
+      }));
       dispatch({
         type: "MODIFY_CART",
         payload: Array.from(new Set(cartItems)),
@@ -74,12 +78,14 @@ const Card = ({ product }) => {
           <p className={styles.productdelivery}>{delivery}</p>
         </div>
       </div>
-      {!isLoadingCart && state.cart.includes(_id) && stock === "In stock" ? (
+      {!isLoadingCart &&
+      state.cart.some((product) => product.item === _id) &&
+      stock === "In stock" ? (
         <button className={styles.addbutton} onClick={() => navigate("/cart")}>
           Go to Cart
         </button>
       ) : !isLoadingCart &&
-        !state.cart.includes(_id) &&
+        !state.cart.some((product) => product.item === _id) &&
         stock === "In stock" ? (
         <button className={styles.addbutton} onClick={addToCart}>
           Add to Cart
