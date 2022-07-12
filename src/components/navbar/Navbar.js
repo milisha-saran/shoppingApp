@@ -47,9 +47,15 @@ const Navbar = () => {
               ></i>
             )}
           </div>
-          <div className={styles.element} onClick={logout}>
-            Log Out
-          </div>
+          {window.localStorage.getItem("rtoken") ? (
+            <div className={styles.element} onClick={logout}>
+              Log Out
+            </div>
+          ) : (
+            <div className={styles.element} onClick={logout}>
+              Log In
+            </div>
+          )}
         </div>
       </nav>
     </div>

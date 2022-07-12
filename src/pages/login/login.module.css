@@ -58,3 +58,16 @@ h3{
     font-size: x-large;
     font-weight: 600;
 }
+
+.redirect{
+    display: flex;
+    gap: 5px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.link{
+    color: rgb(67, 135, 254);
+    text-decoration: underline;
+    cursor: pointer;
+}

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 import { useProduct } from "../../context/ProductProvider";
 import { textConverter } from "../../helper/textConverter";
 import { API } from "../../server";
@@ -15,6 +16,18 @@ const Card = ({ product }) => {
 
   const addToCart = async () => {
     try {
+      // if (!window.localStorage.getItem("rtoken")) {
+      //   toast.info("🦄 Wow so easy!", {
+      //     position: "top-center",
+      //     autoClose: 5000,
+      //     hideProgressBar: true,
+      //     closeOnClick: true,
+      //     pauseOnHover: true,
+      //     draggable: true,
+      //     progress: undefined,
+      //   });
+      //   return;
+      // }
       setLoadingCart(true);
       const res = await API.post(`/cart/create/${_id}`);
 
@@ -96,6 +109,17 @@ const Card = ({ product }) => {
         </button>
       ) : null}
       {isLoadingCart && <button className={styles.addbutton}>Adding...</button>}
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 };

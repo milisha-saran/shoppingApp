@@ -61,4 +61,18 @@
 }
 
 
+.container{
+    height: 88vh;
+    width: 100%;
+    display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .emptywishlist{
+        height: 200px;
+        width: 250px;
+        
+    }
+
 

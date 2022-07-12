@@ -7,6 +7,7 @@ import { priceCalculator } from "../../helper/priceCalculator";
 import { API } from "../../server";
 import CartCard from "./CartCard";
 import StripeCheckout from "react-stripe-checkout";
+import cart from "../../assets/emptycart.png";
 
 const Cart = () => {
   const { state, dispatch } = useProduct();
@@ -45,24 +46,30 @@ const Cart = () => {
             );
           })}
         </div>
-        <div className={styles.paymentcard}>
-          <p className={styles.paymenttitle}>Price Details</p>
-          <p className={styles.paymentdetails}>Total price : ₹ {amount}</p>
-          <p className={styles.paymentdetails}>Discount : - ₹ {discount} </p>
-          <p className={styles.paymentdetails}>
-            Delivery Charges : ₹ {delivery}
-          </p>
-          <p className={styles.paymentfinal}>Total Amount : ₹ {total}</p>
-          <StripeCheckout
-            stripeKey="pk_test_51LKdagSGDU5efwU1ruPmOuJBKUWu3EwVg2Zfwfhz8SBwgZ56bxpsesxvS2KLLliINxNLR7ABV1eX2cBrZZoecMKk006joxW3ec"
-            token={handleToken}
-            amount={total * 100}
-            currency="inr"
-            name="8Gadget"
-            billingAddress
-            shippingAddress
-          />
-        </div>
+        {state.cart.length !== 0 ? (
+          <div className={styles.paymentcard}>
+            <p className={styles.paymenttitle}>Price Details</p>
+            <p className={styles.paymentdetails}>Total price : ₹ {amount}</p>
+            <p className={styles.paymentdetails}>Discount : - ₹ {discount} </p>
+            <p className={styles.paymentdetails}>
+              Delivery Charges : ₹ {delivery}
+            </p>
+            <p className={styles.paymentfinal}>Total Amount : ₹ {total}</p>
+            <StripeCheckout
+              stripeKey="pk_test_51LKdagSGDU5efwU1ruPmOuJBKUWu3EwVg2Zfwfhz8SBwgZ56bxpsesxvS2KLLliINxNLR7ABV1eX2cBrZZoecMKk006joxW3ec"
+              token={handleToken}
+              amount={total * 100}
+              currency="inr"
+              name="8Gadget"
+              billingAddress
+              shippingAddress
+            />
+          </div>
+        ) : (
+          <div className={styles.container}>
+            <img className={styles.emptycart} src={cart} alt="empty cart" />
+          </div>
+        )}
       </div>
     </Layout>
   );

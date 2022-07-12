@@ -40,33 +40,43 @@ const Login = () => {
     }
   };
   return (
-    <div className={styles.container}>
-      <form className={styles.loginform} onSubmit={login}>
-        <h3>Log In</h3>
-        <div className={styles.formdata}>
-          <label className={styles.formlabel}>Email : </label>
-          <input
-            className={styles.forminput}
-            onChange={handleData}
-            name="email"
-            value={user.email}
-            type="email"
-          />
-        </div>
+    <Layout>
+      <div className={styles.container}>
+        <form className={styles.loginform} onSubmit={login}>
+          <h3>Log In</h3>
+          <div className={styles.formdata}>
+            <label className={styles.formlabel}>Email : </label>
+            <input
+              className={styles.forminput}
+              onChange={handleData}
+              name="email"
+              value={user.email}
+              type="email"
+            />
+          </div>
 
-        <div className={styles.formdata}>
-          <label className={styles.formlabel}>Password : </label>
-          <input
-            onChange={handleData}
-            className={styles.forminput}
-            name="password"
-            value={user.password}
-            type="password"
-          />
+          <div className={styles.formdata}>
+            <label className={styles.formlabel}>Password : </label>
+            <input
+              onChange={handleData}
+              className={styles.forminput}
+              name="password"
+              value={user.password}
+              type="password"
+            />
+          </div>
+          <button className={styles.submitbutton}>Submit</button>
+        </form>
+
+        <div className={styles.redirect}>
+          <p>Don't have an account?</p>
+          <p className={styles.link} onClick={() => navigate("/signup")}>
+            {" "}
+            Sign Up!
+          </p>
         </div>
-        <button className={styles.submitbutton}>Submit</button>
-      </form>
-    </div>
+      </div>
+    </Layout>
   );
 };
 

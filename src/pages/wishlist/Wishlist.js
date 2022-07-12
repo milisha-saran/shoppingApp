@@ -8,7 +8,10 @@ import Layout from "../../components/layout/Layout";
 import { API } from "../../server";
 import WishlistCard from "./WishlistCard";
 
+import wishlist from "../../assets/wishlist-empty.png";
+
 const Wishlist = () => {
+  const [loader, setLoader] = useState(false);
   const [isLoadingWishlist, setLoadingWishlist] = useState(false);
   const [isLoadingCart, setLoadingCart] = useState(false);
   const [products, setProduct] = useState([]);
@@ -16,8 +19,10 @@ const Wishlist = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    setLoader(true);
     (async () => {
       try {
+        setLoader(false);
         if (state.userid) {
           const res = await API("/wishlist");
           setProduct(res.data);
@@ -30,17 +35,27 @@ const Wishlist = () => {
 
   return (
     <Layout>
-      <div className={styles.layout}>
-        {products.map((product) => {
-          return (
-            <WishlistCard
-              key={product._id}
-              product={product}
-              setProduct={setProduct}
-            />
-          );
-        })}
-      </div>
+      {state.wishlist.length !== 0 && !loader ? (
+        <div className={styles.layout}>
+          {products.map((product) => {
+            return (
+              <WishlistCard
+                key={product._id}
+                product={product}
+                setProduct={setProduct}
+              />
+            );
+          })}
+        </div>
+      ) : (
+        <div className={styles.container}>
+          <img
+            className={styles.emptywishlist}
+            src={wishlist}
+            alt="empty wishlist"
+          />
+        </div>
+      )}
     </Layout>
   );
 };
