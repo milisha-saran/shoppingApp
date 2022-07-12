@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { priceCalculator } from "../../helper/priceCalculator";
 import { API } from "../../server";
 import CartCard from "./CartCard";
+import StripeCheckout from "react-stripe-checkout";
 
 const Cart = () => {
   const { state, dispatch } = useProduct();
@@ -27,6 +28,8 @@ const Cart = () => {
   }, [state.userid]);
 
   const { total, amount, discount, delivery } = priceCalculator(products);
+
+  const handleToken = () => {};
 
   return (
     <Layout>
@@ -50,7 +53,15 @@ const Cart = () => {
             Delivery Charges : ₹ {delivery}
           </p>
           <p className={styles.paymentfinal}>Total Amount : ₹ {total}</p>
-          <button className={styles.paymentbutton}>Pay Now</button>
+          <StripeCheckout
+            stripeKey="pk_test_51LKdagSGDU5efwU1ruPmOuJBKUWu3EwVg2Zfwfhz8SBwgZ56bxpsesxvS2KLLliINxNLR7ABV1eX2cBrZZoecMKk006joxW3ec"
+            token={handleToken}
+            amount={total * 100}
+            currency="inr"
+            name="8Gadget"
+            billingAddress
+            shippingAddress
+          />
         </div>
       </div>
     </Layout>
