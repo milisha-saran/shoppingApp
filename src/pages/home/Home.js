@@ -7,13 +7,13 @@ import styles from "./home.module.css";
 import { useProduct } from "../../context/ProductProvider";
 import { createCategory } from "../../helper/category";
 import { API } from "../../server";
-import mobile from "../../assets/mobile.jpg";
-import laptop from "../../assets/laptop.jpg";
-import tv from "../../assets/tv.jpeg";
-import watch from "../../assets/watch.jpg";
-import earphone from "../../assets/earphone.jpg";
-import storage from "../../assets/storage.jpg";
-import gadgets from "../../assets/gadgets.jpg";
+import mobile from "../../assets/phones.webp";
+
+import tv from "../../assets/tvs.webp";
+import watch from "../../assets/watches.webp";
+import earphone from "../../assets/earphones.webp";
+import storage from "../../assets/sd.webp";
+import gadgets from "../../assets/all.webp";
 
 const Home = () => {
   const { state, dispatch } = useProduct();
@@ -35,64 +35,72 @@ const Home = () => {
     })();
   }, []);
 
-  const settings = {
-    // className: "center",
-    // centerMode: true,
-    // infinite: true,
-    // centerPadding: "60px",
-    // slidesToShow: 3,
-    // speed: 500,
-    // accessibility: true,
-    // dots: true,
-    // arrows: true,
-    dots: true,
-
-    infinite: true,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    vertical: true,
-    verticalSwiping: true,
-    beforeChange: function (currentSlide, nextSlide) {
-      console.log("before change", currentSlide, nextSlide);
-    },
-    afterChange: function (currentSlide) {
-      console.log("after change", currentSlide);
-    },
-  };
+  // const settings = {
+  //   className: styles.carousel,
+  //   centerMode: true,
+  //   infinite: true,
+  //   centerPadding: "60px",
+  //   slidesToShow: 3,
+  //   speed: 500,
+  //   accessibility: true,
+  //   dots: true,
+  //   arrows: true,
+  // };
 
   return (
     <Layout>
-      <div className={styles.container}>
-        <Slider className={styles.slider} {...settings}>
+      {/* <div>
+        <Slider {...settings}>
           <div>
-            <h3>Phone</h3>
             <img className={styles.image} src={mobile} alt="mobile" />
           </div>
           <div>
-            <h3>Laptop</h3>
             <img className={styles.image} src={laptop} alt="laptop" />
           </div>
           <div>
-            <h3>Watch</h3>
             <img className={styles.image} src={watch} alt="watch" />
           </div>
           <div>
-            <h3>Storage</h3>
             <img className={styles.image} src={storage} alt="storage" />
           </div>
           <div>
-            <h3>TV</h3>
             <img className={styles.image} src={tv} alt="tv" />
           </div>
           <div>
-            <h3>Earphones</h3>
             <img className={styles.image} src={earphone} alt="earphone" />
           </div>
           <div>
-            <h3>All</h3>
             <img className={styles.image} src={gadgets} alt="gadgets" />
           </div>
         </Slider>
+      </div> */}
+      <div className={styles.container}>
+        <div className={styles.cards}>
+          <div className={styles.card}>
+            <p className={styles.name}>Phones</p>
+            <img className={styles.image} src={mobile} alt="mobile" />
+          </div>
+          <div className={styles.card}>
+            <p className={styles.name}>Storage</p>
+            <img className={styles.image} src={storage} alt="laptop" />
+          </div>
+          <div className={styles.card}>
+            <p className={styles.name}>Watch</p>
+            <img className={styles.image} src={watch} alt="watch" />
+          </div>
+          <div className={styles.card}>
+            <p className={styles.name}>TV</p>
+            <img className={styles.image} src={tv} alt="tv" />
+          </div>
+          <div className={styles.card}>
+            <p className={styles.name}>Earphones</p>
+            <img className={styles.image} src={earphone} alt="earphone" />
+          </div>
+          <div className={styles.card}>
+            <p className={styles.name}>All</p>
+            <img className={styles.image} src={gadgets} alt="gadgets" />
+          </div>
+        </div>
       </div>
     </Layout>
   );

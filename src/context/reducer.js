@@ -40,7 +40,7 @@ export const reducerFunc = (state, action) => {
         brands: [],
       };
     case "REVERT":
-      return state;
+      return initialValue;
 
     default:
       return state;

@@ -19,7 +19,6 @@ const Products = () => {
         const res = await API("/product");
 
         if (res.status === 200) {
-          setLoader(false);
           dispatch({ type: "FETCH_PRODUCTS", payload: res.data });
 
           dispatch({ type: "SET_PRODUCTS", payload: res.data });
@@ -31,6 +30,8 @@ const Products = () => {
         }
       } catch (err) {
         console.log(err);
+      } finally {
+        setLoader(false);
       }
     })();
   }, []);

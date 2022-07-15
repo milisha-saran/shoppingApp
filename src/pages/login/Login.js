@@ -30,6 +30,7 @@ const Login = () => {
         const { cart, wishlist } = userData;
         setApiHeader(accessToken);
         window.localStorage.setItem("rtoken", refreshToken);
+        dispatch({ type: "SET_USERID", payload: userData._id });
         dispatch({ type: "MODIFY_CART", payload: cart });
         dispatch({ type: "MODIFY_WISHLIST", payload: wishlist });
 

@@ -9,6 +9,7 @@ import { API } from "../../server";
 import WishlistCard from "./WishlistCard";
 
 import wishlist from "../../assets/wishlist-empty.png";
+import Loader from "../../components/loader/Loader";
 
 const Wishlist = () => {
   const [loader, setLoader] = useState(false);
@@ -22,39 +23,44 @@ const Wishlist = () => {
     setLoader(true);
     (async () => {
       try {
-        setLoader(false);
         if (state.userid) {
           const res = await API("/wishlist");
           setProduct(res.data);
         }
       } catch (error) {
         console.log(error);
+      } finally {
+        setLoader(false);
       }
     })();
-  }, [state.userid]);
+  }, []);
 
   return (
     <Layout>
-      {state.wishlist.length !== 0 && !loader ? (
-        <div className={styles.layout}>
-          {products.map((product) => {
-            return (
-              <WishlistCard
-                key={product._id}
-                product={product}
-                setProduct={setProduct}
-              />
-            );
-          })}
-        </div>
+      {!loader ? (
+        state.wishlist.length !== 0 ? (
+          <div className={styles.layout}>
+            {products.map((product) => {
+              return (
+                <WishlistCard
+                  key={product._id}
+                  product={product}
+                  setProduct={setProduct}
+                />
+              );
+            })}
+          </div>
+        ) : (
+          <div className={styles.container}>
+            <img
+              className={styles.emptywishlist}
+              src={wishlist}
+              alt="empty wishlist"
+            />
+          </div>
+        )
       ) : (
-        <div className={styles.container}>
-          <img
-            className={styles.emptywishlist}
-            src={wishlist}
-            alt="empty wishlist"
-          />
-        </div>
+        <Loader />
       )}
     </Layout>
   );
